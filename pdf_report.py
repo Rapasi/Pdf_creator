@@ -40,8 +40,8 @@ if __name__=='__main__':
     pdf.cell(0,30,f'Osakekurssit {start.strftime("%m/%d/%y").replace("/0","/").lstrip("0")}-{end.strftime("%m/%d/%y").replace("/0","/").lstrip("0")}')
     pdf.image('Kuvaaja_0.png',5,30,WIDTH/2-5)
     pdf.image('Kuvaaja_1.png',WIDTH/2+5,30,WIDTH/2-5)
-    pdf.image('kuvaaja_2.png',5,120,WIDTH/2-5)
-    pdf.image('kuvaaja_3.png',WIDTH/2+5,120,WIDTH/2-5)
+    pdf.image('kuvaaja_2.png',5,115,WIDTH/2-5)
+    pdf.image('kuvaaja_3.png',WIDTH/2+5,115,WIDTH/2-5)
  
     pdf.add_page()
     pdf.image('kuvaaja_4.png',5,30,WIDTH/2-5)
