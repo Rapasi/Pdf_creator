@@ -1,3 +1,5 @@
+# Importing necessary libraries 
+
 from fpdf import FPDF
 import pandas as pd
 import pandas_datareader as pdr
@@ -7,13 +9,21 @@ import matplotlib.pyplot as plt
 from os import path
 import numpy as np
 
+# Setting start date and end date for graphs  
+
 start=datetime(2020,1,1)
 end=datetime.today()
+
+# Dimensions of document (not accurate currently)
 
 WIDTH=210
 HEIGHT=580
 
+# List of stocks to plot
+
 osakkeet=['ORTHEX.HE','WRT1V.HE','TYRES.HE','UPM.HE','METSB.HE','SHOT.ST','ZIGN.ST','OUT1V.HE','FIA1S.HE']
+
+# Functions to download stock prices and plot the graphs
 
 def open_stock(Osake):
     osake=pdr.DataReader(Osake,'yahoo',start,end)
@@ -33,6 +43,8 @@ def kuvaaja(Osake):
 
 if __name__=='__main__':
     kuva=kuvaaja(open_stock(osakkeet))   
+ 
+# Creating pdf using fpdf
 
     pdf=FPDF()
     pdf.add_page()
