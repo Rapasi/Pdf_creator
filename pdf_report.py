@@ -17,7 +17,7 @@ end=datetime.today()
 # Dimensions of document (not accurate currently)
 
 WIDTH=210
-HEIGHT=580
+HEIGHT=590
 
 # List of stocks to plot
 
