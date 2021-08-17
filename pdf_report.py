@@ -1,6 +1,7 @@
 # Importing necessary libraries 
 
 from fpdf import FPDF
+from matplotlib import colors
 import pandas as pd
 import pandas_datareader as pdr
 from datetime import datetime
@@ -11,9 +12,8 @@ import numpy as np
 
 # Setting start date and end date for graphs  
 
-start=datetime(2020,1,1)
+start=datetime(2019,1,1)
 end=datetime.today()
-
 # Dimensions of document (not accurate currently)
 
 WIDTH=210
@@ -23,7 +23,21 @@ HEIGHT=590
 
 osakkeet=['ORTHEX.HE','WRT1V.HE','TYRES.HE','UPM.HE','METSB.HE','SHOT.ST','ZIGN.ST','OUT1V.HE','FIA1S.HE']
 
-# Functions to download stock prices and plot the graphs
+
+label_list = [
+    pd.to_datetime("2021-07-21"), 
+    pd.to_datetime("2019-11-29"), 
+    pd.to_datetime("2019-01-09"),
+    pd.to_datetime("2020-03-31"), 
+    pd.to_datetime("2019-06-03"), 
+    pd.to_datetime("2020-10-16"),
+    pd.to_datetime("2021-01-04"), 
+    pd.to_datetime("2021-05-08"), 
+    pd.to_datetime("2020-06-11") ]
+
+
+# Functions to download stock prices and plot graphs
+
 
 def open_stock(Osake):
     osake=pdr.DataReader(Osake,'yahoo',start,end)
@@ -32,14 +46,16 @@ def open_stock(Osake):
 
 def kuvaaja(Osake):
     colours=['r','g','b','k','c','y','m','teal','sienna']
+    ax=plt.gca()
     for i in range(len(osakkeet)):
         plt.figure(figsize=(10,6))
         plt.plot(open_stock(osakkeet[i]),colours[i])
+        plt.axvline(label_list[i],c=colours[i])
         plt.title(osakkeet[i])
         plt.xlabel('Aika')
         plt.xticks(rotation=20)
         plt.ylabel('Hinta')
-        plt.savefig('Kuvaaja_{0}.png'.format(i))
+        plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i))
 
 if __name__=='__main__':
     kuva=kuvaaja(open_stock(osakkeet))   
@@ -61,6 +77,6 @@ if __name__=='__main__':
     pdf.image('kuvaaja_6.png',5,110,WIDTH/2-5)
     pdf.image('kuvaaja_7.png',WIDTH/2+5,110,WIDTH/2-5)
     pdf.image('kuvaaja_8.png',5,190,WIDTH/2-5)
-    pdf.output('report_pdf','F')
+    pdf.output(r'C:\Users\ramie\Projects\report_pdf','F')
 
 
