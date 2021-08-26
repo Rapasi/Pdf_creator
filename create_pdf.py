@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Setting start date and end date for graphs  
 
-start=datetime(2019,1,1)
+start=datetime(2018,1,1)
 end=datetime.today()
 # Dimensions of document (not accurate currently)
 
