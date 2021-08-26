@@ -35,7 +35,6 @@ colours=['r','g','b','k','c','y','m','teal','sienna']
 osakkeet=['ORTHEX.HE','WRT1V.HE','TYRES.HE','UPM.HE','METSB.HE','SHOT.ST','ZIGN.ST','OUT1V.HE','FIA1S.HE']
 stock_names=get_name(osakkeet)
 
-
 label_list = [
     pd.to_datetime("2021-07-21"),
     pd.to_datetime("2019-11-29"), 
@@ -47,8 +46,6 @@ label_list = [
     (pd.to_datetime("2021-05-08"), pd.to_datetime("2019-02-13")),
     (pd.to_datetime("2020-06-11"), pd.to_datetime("2019-07-25"),pd.to_datetime("2018-11-27"))]
 
-
-
 # Functions to download stock prices and plot graphs
 
 def open_stock(Osake):
@@ -58,17 +55,16 @@ def open_stock(Osake):
 
 my_stocks=open_stock(osakkeet)
 
-        
 def purchase(labels):
     for date in labels: 
         if labels[date] in open_stock(osakkeet):
            plt.axvline(label_list[date], linewidth=1,ls=':')
         else: continue
 
-
 def kuvaaja(Osake):
     ax=plt.gca()
     for i in range(len(osakkeet)):
+        plt.close()
         plt.figure(figsize=(10,6))
         plt.plot(open_stock(osakkeet[i]),color=colours[i])
         plt.xlabel('Aika')
@@ -76,32 +72,9 @@ def kuvaaja(Osake):
         plt.title(stock_names[i])
         plt.ylabel('Hinta')
         plt.vlines(label_list[i],0,open_stock(osakkeet[i]).max(),color=colours[i],ls=':')
-        plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i))
+        plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i),'r')
 
         
-
-
-
 if __name__=='__main__':
     kuva=kuvaaja(open_stock(osakkeet))   
  
-# Creating pdf using fpdf
-
-    # pdf=FPDF()
-    # pdf.add_page()
-    # pdf.set_font('Arial','B',16)
-    # pdf.cell(0,30,f'Osakekurssit {start.strftime("%m/%d/%y").replace("/0","/").lstrip("0")}-{end.strftime("%m/%d/%y").replace("/0","/").lstrip("0")}')
-    # pdf.image('Kuvaaja_0.png',5,30,WIDTH/2-5)
-    # pdf.image('Kuvaaja_1.png',WIDTH/2+5,30,WIDTH/2-5)
-    # pdf.image('kuvaaja_2.png',5,115,WIDTH/2-5)
-    # pdf.image('kuvaaja_3.png',WIDTH/2+5,115,WIDTH/2-5)
- 
-    # pdf.add_page()
-    # pdf.image('kuvaaja_4.png',5,30,WIDTH/2-5)
-    # pdf.image('kuvaaja_5.png',WIDTH/2+5,30,WIDTH/2-5)
-    # pdf.image('kuvaaja_6.png',5,110,WIDTH/2-5)
-    # pdf.image('kuvaaja_7.png',WIDTH/2+5,110,WIDTH/2-5)
-    # pdf.image('kuvaaja_8.png',5,190,WIDTH/2-5)
-    # pdf.output(r'C:\Users\ramie\Projects\report_pdf','F')
-
-
