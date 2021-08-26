@@ -65,15 +65,20 @@ def kuvaaja(Osake):
     ax=plt.gca()
     for i in range(len(osakkeet)):
         plt.close()
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(12,8))
         plt.plot(open_stock(osakkeet[i]),color=colours[i])
-        plt.xlabel('Aika')
+        plt.xlabel('Aika',fontsize=14)
         plt.xticks(rotation=20)
-        plt.title(stock_names[i])
-        plt.ylabel('Hinta')
+        plt.title(stock_names[i],fontsize=18)
+        plt.ylabel('Hinta',fontsize=14)
         plt.vlines(label_list[i],0,open_stock(osakkeet[i]).max(),color=colours[i],ls=':')
-        plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i),'r')
-
+        plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i))
+    plt.figure(figsize=(12,8))
+    plt.xlabel('Aika',fontsize=14)
+    plt.title('All stocks',fontsize=18)
+    plt.ylabel('Hinta',fontsize=14)
+    plt.plot(open_stock(osakkeet))
+    plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_all.png')
         
 if __name__=='__main__':
     kuva=kuvaaja(open_stock(osakkeet))   
