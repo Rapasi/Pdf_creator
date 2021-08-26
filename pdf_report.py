@@ -55,23 +55,17 @@ def open_stock(Osake):
 
 my_stocks=open_stock(osakkeet)
 
-def purchase(labels):
-    for date in labels: 
-        if labels[date] in open_stock(osakkeet):
-           plt.axvline(label_list[date], linewidth=1,ls=':')
-        else: continue
-
 def kuvaaja(Osake):
     ax=plt.gca()
     for i in range(len(osakkeet)):
         plt.close()
         plt.figure(figsize=(12,8))
-        plt.plot(open_stock(osakkeet[i]),color=colours[i])
+        plt.plot(my_stocks[i],color=colours[i])
         plt.xlabel('Aika',fontsize=14)
         plt.xticks(rotation=20)
         plt.title(stock_names[i],fontsize=18)
         plt.ylabel('Hinta',fontsize=14)
-        plt.vlines(label_list[i],0,open_stock(osakkeet[i]).max(),color=colours[i],ls=':')
+        plt.vlines(label_list[i],0,my_stocks[i].max(),color=colours[i],ls=':')
         plt.savefig(r'C:\Users\ramie\Projects\Kuvaaja_{0}.png'.format(i))
     plt.figure(figsize=(12,8))
     plt.xlabel('Aika',fontsize=14)
